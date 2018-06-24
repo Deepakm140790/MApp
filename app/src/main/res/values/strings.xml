@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mercari</string>
+    <string name="sell">Sell</string>
+
+    <string name="tab_tittle_men">Men</string>
+    <string name="tab_tittle_all">All</string>
+    <string name="tab_tittle_women">Women</string>
+</resources>

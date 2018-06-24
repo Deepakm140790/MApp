@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="110dp"
+    android:layout_height="110dp"
+    android:background="@mipmap/bg_exhibit"
+    android:padding="@dimen/fab_padding">
+
+    <ImageView
+        android:id="@+id/iv_fab"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_camera" />
+
+    <TextView
+        style="@style/TextWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iv_fab"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sell" />
+</RelativeLayout>

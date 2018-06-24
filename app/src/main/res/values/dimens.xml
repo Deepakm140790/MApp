@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_padding">10dp</dimen>
+
+    <dimen name="actionbar_icon_margin">10dp</dimen>
+    <dimen name="actionbar_top_padding">5dp</dimen>
+    <dimen name="actionbar_bottom_padding">5dp</dimen>
+</resources>

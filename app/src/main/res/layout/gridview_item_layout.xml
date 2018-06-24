@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="200dp"
+            android:layout_height="220dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_launcher" />
+
+        <ImageView
+            android:id="@+id/iv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:maxHeight="100dp"
+            android:maxWidth="100dp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:text="@string/app_name"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv_like"
+            style="@style/TextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_like"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/tv_comment"
+            style="@style/TextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_comment"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/TextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="$ 250" />
+    </LinearLayout>
+</LinearLayout>
