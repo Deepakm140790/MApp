@@ -1,5 +1,8 @@
 package com.demo.mercariapp.network;
 
+/**
+ * This class contains Volley success and failure constants.
+ */
 public class NetworkConstant {
     public static final class MessageState {
         public static final int CATEGORY_LIST_SUCCESS = 1;
