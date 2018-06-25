@@ -6,7 +6,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.demo.mercariapp.Util.PrintLog;
+import com.demo.mercariapp.util.PrintLog;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

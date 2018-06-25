@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public final class NetworkManager {
     // Timeout value in milliseconds.
-    private static final int TIMEOUT = 5 * 1000;
+    private static final int TIMEOUT = 3 * 1000;
 
     private NetworkManager() {
     }

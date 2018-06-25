@@ -1,9 +1,13 @@
-package com.demo.mercariapp.Util;
+package com.demo.mercariapp.util;
 
 import android.util.Log;
 
+/**
+ * This class contains logger methods.
+ * These logs are helpful for debugging purpose in future.
+ */
 public final class PrintLog {
-    private static final String APP_NAME = "MercariApp -- ";
+    private static final String APP_NAME = "MercariLog -> ";
 
     private PrintLog() {
     }

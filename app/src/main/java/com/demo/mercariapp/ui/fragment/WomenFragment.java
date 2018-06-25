@@ -13,8 +13,8 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import com.demo.mercariapp.R;
-import com.demo.mercariapp.Util.PrintLog;
-import com.demo.mercariapp.Util.Util;
+import com.demo.mercariapp.util.PrintLog;
+import com.demo.mercariapp.util.Util;
 import com.demo.mercariapp.adapter.GridViewAdapter;
 import com.demo.mercariapp.model.DataModel;
 import com.demo.mercariapp.network.NetworkConstant;
@@ -61,6 +61,7 @@ public class WomenFragment extends Fragment implements MainActivity.MainActivity
     private void showProgressBar() {
         if (mProgressBar == null)
             return;
+        mGridView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
@@ -68,6 +69,7 @@ public class WomenFragment extends Fragment implements MainActivity.MainActivity
         if (mProgressBar == null)
             return;
         mProgressBar.setVisibility(View.GONE);
+        mGridView.setVisibility(View.VISIBLE);
     }
 
     @Override

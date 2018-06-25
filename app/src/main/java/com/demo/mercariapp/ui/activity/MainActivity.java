@@ -12,9 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.demo.mercariapp.R;
-import com.demo.mercariapp.Util.ExceptionReport;
-import com.demo.mercariapp.Util.PrintLog;
-import com.demo.mercariapp.Util.Util;
+import com.demo.mercariapp.util.ExceptionReport;
+import com.demo.mercariapp.util.PrintLog;
+import com.demo.mercariapp.util.Util;
 import com.demo.mercariapp.network.NetworkConstant;
 import com.demo.mercariapp.network.NetworkManager;
 import com.demo.mercariapp.network.VolleyErrorHelper;

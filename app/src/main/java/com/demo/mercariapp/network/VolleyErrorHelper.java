@@ -5,7 +5,7 @@ import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
-import com.demo.mercariapp.Util.PrintLog;
+import com.demo.mercariapp.util.PrintLog;
 
 /**
  * Class returns appropriate message which is to be displayed to the user

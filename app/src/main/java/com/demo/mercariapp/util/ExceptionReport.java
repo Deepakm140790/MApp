@@ -1,4 +1,4 @@
-package com.demo.mercariapp.Util;
+package com.demo.mercariapp.util;
 
 import android.os.Handler;
 
@@ -17,7 +17,6 @@ public final class ExceptionReport {
 
     /**
      * This method is used to send the ExceptionReport report to server.
-     *
      * @param error
      * @param handler
      */

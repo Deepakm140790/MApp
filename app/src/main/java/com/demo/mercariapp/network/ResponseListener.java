@@ -5,7 +5,7 @@ import android.os.Message;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.demo.mercariapp.Util.PrintLog;
+import com.demo.mercariapp.util.PrintLog;
 
 /**
  * This class is Generic class which helps to receive the result object which

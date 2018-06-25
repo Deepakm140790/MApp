@@ -1,4 +1,4 @@
-package com.demo.mercariapp.Util;
+package com.demo.mercariapp.util;
 
 import android.app.ActionBar;
 import android.content.Context;
