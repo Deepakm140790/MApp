@@ -4,4 +4,6 @@
     <dimen name="actionbar_icon_margin">10dp</dimen>
     <dimen name="actionbar_top_padding">5dp</dimen>
     <dimen name="actionbar_bottom_padding">5dp</dimen>
+
+    <dimen name="grid_item_offset">2dp</dimen>
 </resources>

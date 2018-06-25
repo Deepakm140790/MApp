@@ -6,17 +6,13 @@
     android:background="@color/colorGridBg"
     tools:context="ui.fragment.MenFragment">
 
-    <GridView
-        android:id="@+id/gv_men"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_men"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:columnWidth="90dp"
-        android:gravity="center"
-        android:horizontalSpacing="5dp"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="5dp" />
+        android:clipToPadding="false"
+        android:padding="@dimen/grid_item_offset"
+        android:scrollbars="vertical" />
 
     <ProgressBar
         android:id="@+id/pb_men"

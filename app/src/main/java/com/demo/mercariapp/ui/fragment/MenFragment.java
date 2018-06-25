@@ -2,36 +2,41 @@ package com.demo.mercariapp.ui.fragment;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.DimenRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import com.demo.mercariapp.R;
-import com.demo.mercariapp.util.PrintLog;
-import com.demo.mercariapp.util.Util;
 import com.demo.mercariapp.adapter.GridViewAdapter;
 import com.demo.mercariapp.model.DataModel;
 import com.demo.mercariapp.network.NetworkConstant;
 import com.demo.mercariapp.network.NetworkManager;
 import com.demo.mercariapp.network.VolleyErrorHelper;
 import com.demo.mercariapp.ui.activity.MainActivity;
+import com.demo.mercariapp.util.PrintLog;
+import com.demo.mercariapp.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class MenFragment extends Fragment implements MainActivity.MainActivityInteractionListener, AdapterView.OnItemClickListener {
+public class MenFragment extends Fragment implements MainActivity.MainActivityInteractionListener,
+        GridViewAdapter.ClickListener {
     private static final String TAG = "MenFragment";
     private Context mContext;
-    private GridView mGridView;
+    private RecyclerView mRecyclerView;
     private static final String DTAG = "DataTagMen";
     private ArrayList<DataModel> mDataArray = new ArrayList<>();
     private ProgressBar mProgressBar;
@@ -55,15 +60,21 @@ public class MenFragment extends Fragment implements MainActivity.MainActivityIn
     }
 
     private void init(View view) {
-        mGridView = (GridView) view.findViewById(R.id.gv_men);
-        mGridView.setOnItemClickListener(this);
         mProgressBar = (ProgressBar) view.findViewById(R.id.pb_men);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_men);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 2);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.addOnItemTouchListener(new GridViewAdapter.RecyclerTouchListener(mContext, mRecyclerView, this));
+        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(mContext, R.dimen.grid_item_offset);
+        mRecyclerView.addItemDecoration(itemDecoration);
     }
 
     private void showProgressBar() {
         if (mProgressBar == null)
             return;
-        mGridView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
@@ -71,23 +82,7 @@ public class MenFragment extends Fragment implements MainActivity.MainActivityIn
         if (mProgressBar == null)
             return;
         mProgressBar.setVisibility(View.GONE);
-        mGridView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        PrintLog.d(TAG, "onConfigurationChanged()");
-        super.onConfigurationChanged(newConfig);
-
-        if (mGridView == null)
-            return;
-
-        // Checks the orientation of the screen
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            mGridView.setNumColumns(3);
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            mGridView.setNumColumns(2);
-        }
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -95,12 +90,26 @@ public class MenFragment extends Fragment implements MainActivity.MainActivityIn
         PrintLog.d(TAG, "onStart()");
         super.onStart();
         showProgressBar();
-
         if (mContext instanceof MainActivity) {
             String data = ((MainActivity) mContext).getData(this);
             if (data != null) {
                 NetworkManager.getData(DTAG, data, mHandler);
             }
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        PrintLog.d(TAG, "onConfigurationChanged()");
+        super.onConfigurationChanged(newConfig);
+        if (mRecyclerView == null)
+            return;
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
         }
     }
 
@@ -187,30 +196,39 @@ public class MenFragment extends Fragment implements MainActivity.MainActivityIn
             PrintLog.e(TAG, "context is null");
             return;
         }
-        GridViewAdapter adapter = new GridViewAdapter(mContext, R.layout.gridview_item_layout, mDataArray);
-        mGridView.setAdapter(adapter);
+        GridViewAdapter gridViewAdapter = new GridViewAdapter(mContext, mDataArray);
+        mRecyclerView.setAdapter(gridViewAdapter);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        PrintLog.d(TAG, "onItemClick");
+    public void onClick(View view, int position) {
+        Util.showToast(mContext, "GridView item clicked and index position : " + position);
+    }
 
-        // Get the GridView selected/clicked item text
-        switch (view.getId()) {
-            case R.id.tv_like:
-                Util.showToast(mContext, "Like view clicked");
-                break;
+    @Override
+    public void onLongClick(View view, int position) {
 
-            case R.id.tv_comment:
-                Util.showToast(mContext, "Comment view clicked");
-                break;
+    }
 
-            default:
-                DataModel dataModel = mDataArray.get(position);
-                // Display the selected/clicked item text and position on TextView
-                Util.showToast(mContext, "GridView item clicked :" + dataModel.getName() +
-                        "\nAt index position : " + position);
-                break;
+    /**
+     * This class is used for view Decoration.
+     */
+    public class ItemOffsetDecoration extends RecyclerView.ItemDecoration {
+        private int mItemOffset;
+
+        public ItemOffsetDecoration(int itemOffset) {
+            mItemOffset = itemOffset;
+        }
+
+        public ItemOffsetDecoration(@NonNull Context context, @DimenRes int itemOffsetId) {
+            this(context.getResources().getDimensionPixelSize(itemOffsetId));
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
+                                   RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            outRect.set(mItemOffset, mItemOffset, mItemOffset, mItemOffset);
         }
     }
 }
