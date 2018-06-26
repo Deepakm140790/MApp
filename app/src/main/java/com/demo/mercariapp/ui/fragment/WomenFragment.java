@@ -175,7 +175,7 @@ public class WomenFragment extends Fragment implements MainActivity.MainActivity
         if (array == null || array.length() == 0) {
             return;
         }
-
+        mDataArray.clear();
         for (int i = 0; i < array.length(); i++) {
             try {
                 DataModel dataModel = new DataModel();
