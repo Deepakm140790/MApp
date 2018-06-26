@@ -1,6 +1,7 @@
 package com.demo.mercariapp.ui.customview;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
@@ -16,22 +17,22 @@ public class CustomFab extends RelativeLayout {
     public CustomFab(Context context) {
         super(context);
         mInflater = LayoutInflater.from(context);
-        init();
+        init(null);
     }
 
     public CustomFab(Context context, AttributeSet attrs) {
         super(context, attrs);
         mInflater = LayoutInflater.from(context);
-        init();
+        init(attrs);
     }
 
     public CustomFab(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mInflater = LayoutInflater.from(context);
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(@Nullable AttributeSet set) {
         mInflater.inflate(R.layout.fab_layout, this, true);
     }
 }

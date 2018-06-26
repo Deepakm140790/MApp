@@ -1,5 +1,7 @@
+I have considered below 2 state for developing the app.
+
 A. A sample app for training
-You are the leader of a five-person Android team. An inexperienced Android engineer has joined your team. 
+You are the leader of a five-person Android team. An inexperienced Android engineer has joined your team.
 To train this engineer, you decide to implement a sample app as simply structured as possible to use as an example.
 
 B. A base for an app that will be developed and maintained for a long time
